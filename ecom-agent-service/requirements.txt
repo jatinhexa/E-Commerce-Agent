@@ -1,0 +1,7 @@
+anthropic
+fastapi
+fastmcp
+httpx
+pydantic-settings
+uvicorn[standard]
+sse-starlette

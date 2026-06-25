@@ -1,0 +1,7 @@
+fastmcp
+httpx
+chromadb
+openai
+beautifulsoup4
+pydantic-settings
+uvicorn

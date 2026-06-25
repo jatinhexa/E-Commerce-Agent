@@ -1,0 +1,322 @@
+/* ChatWindow */
+.chatContainer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.messageList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  scroll-behavior: smooth;
+}
+
+.inputArea {
+  padding: 1.5rem 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputForm {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.inputForm:focus-within {
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.chatInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  outline: none;
+  padding: 0;
+}
+
+.chatInput::placeholder {
+  color: var(--text-dim);
+}
+
+.sendButton {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-600), var(--brand-500));
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.sendButton:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.sendButton:disabled {
+  background: var(--gray-700);
+  color: var(--gray-500);
+  cursor: not-allowed;
+}
+
+/* MessageBubble */
+.messageWrapper {
+  display: flex;
+  width: 100%;
+  animation: fadeUp 0.35s ease both;
+}
+
+.messageWrapper.user {
+  justify-content: flex-end;
+}
+
+.messageWrapper.assistant {
+  justify-content: flex-start;
+}
+
+.bubble {
+  max-width: 80%;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-xl);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  box-shadow: var(--shadow-sm);
+}
+
+.bubble.user {
+  background: linear-gradient(135deg, var(--brand-600), var(--brand-500));
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.bubble.assistant {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+}
+
+.typingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.5rem 0;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-400);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ProductCard */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.productCard {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard:hover {
+  border-color: rgba(99,102,241,0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.productImageWrapper {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  background: #fff;
+}
+
+.productImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.productInfo {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.productTitle {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productPrice {
+  font-weight: 700;
+  color: var(--brand-400);
+  margin-top: auto;
+}
+
+/* MoodBoardGrid */
+.moodBoard {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: 150px;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.moodBoardItem {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+.moodBoardItem:nth-child(3n+1) {
+  grid-row: span 2;
+}
+.moodBoardItem:nth-child(4n) {
+  grid-column: span 2;
+}
+
+.moodBoardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.moodBoardItem:hover .moodBoardImage {
+  transform: scale(1.05);
+}
+
+/* OrderStatusCard */
+.orderCard {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.orderTitle {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.orderSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.orderSteps::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 5px;
+  bottom: 5px;
+  width: 2px;
+  background: var(--border);
+}
+
+.orderStep {
+  position: relative;
+  font-size: 0.9rem;
+}
+.orderStep::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  z-index: 2;
+}
+.orderStep.active::before {
+  border-color: var(--brand-500);
+  background: var(--brand-500);
+  box-shadow: 0 0 10px var(--brand-500);
+}
+.orderStep.completed::before {
+  border-color: var(--success);
+  background: var(--success);
+}
+
+/* QuickActions */
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.actionChip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.actionChip:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: var(--brand-500);
+  color: var(--brand-200);
+  transform: translateY(-2px);
+}
